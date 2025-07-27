@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def display_menu():
     print("Shopping List Manager")
     print("1. Add Item")
@@ -7,29 +9,29 @@ def display_menu():
 
 def main():
     shopping_list = []
-
     while True:
         display_menu()
-        try:
-            choice = input("Enter your choice: ")
-            choice = int(choice)
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-            continue
+        choice = input("Enter your choice: ")
 
-        if choice == 1:
-            item = input("Enter item to add: ")
+        if choice == '1':
+            item = input("Enter the item to add: ")
             shopping_list.append(item)
-        elif choice == 2:
-            item = input("Enter item to remove: ")
+            print(f"'{item}' has been added to the shopping list.")
+        elif choice == '2':
+            item = input("Enter the item to remove: ")
             if item in shopping_list:
                 shopping_list.remove(item)
+                print(f"'{item}' has been removed from the shopping list.")
             else:
-                print("Item not found.")
-        elif choice == 3:
-            for item in shopping_list:
-                print(item)
-        elif choice == 4:
+                print(f"'{item}' not found in the shopping list.")
+        elif choice == '3':
+            if shopping_list:
+                print("Current Shopping List:")
+                for idx, item in enumerate(shopping_list, 1):
+                    print(f"{idx}. {item}")
+            else:
+                print("Your shopping list is empty.")
+        elif choice == '4':
             print("Goodbye!")
             break
         else:
